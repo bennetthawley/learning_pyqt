@@ -1,6 +1,7 @@
 import sys
 
-from PyQt5.QtWidgets import QMainWindow, qApp, QMenu, QApplication
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QMainWindow, QTextEdit, QAction, QApplication
 
 
 class Example(QMainWindow):
@@ -11,21 +12,27 @@ class Example(QMainWindow):
         self.initUI()
 
     def initUI(self):
+        text_edit = QTextEdit()
+        self.setCentralWidget(text_edit)
+
+        exit_action = QAction(QIcon('Icon.png'), 'Exit', self)
+        exit_action.setShortcut('Ctrl+Q')
+        exit_action.setStatusTip('Exit application')
+        exit_action.triggered.connect(self.close)
+
+        self.statusBar()
+
+        menubar = self.menuBar()
+        file_menu = menubar.addMenu('&File')
+        file_menu.addAction(exit_action)
+
+        toolbar = self.addToolBar('Exit')
+        toolbar.addAction(exit_action)
 
         self.setGeometry(300, 300, 300, 200)
         self.setWindowTitle('Simple menu')
         self.show()
 
-    def contextMenuEvent(self, event):
-        context_menu = QMenu(self)
-
-        new_action = context_menu.addAction("New")
-        open_action = context_menu.addAction("Open")
-        quit_action = context_menu.addAction("Quit")
-        action = context_menu.exec_(self.mapToGlobal(event.pos()))
-
-        if action == quit_action:
-            qApp.quit()
 
 if __name__ == '__main__':
 
