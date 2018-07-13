@@ -1,8 +1,8 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
 from PyQt5.QtGui import QIcon
 
-class Example(QWidget):
+class Example(QMainWindow):
 
     def __init__(self):
         super().__init__()
@@ -11,8 +11,10 @@ class Example(QWidget):
 
     def initUI(self):
 
-        self.setGeometry(300, 300, 300, 220)
-        self.setWindowTitle('Icon')
+        self.statusBar().showMessage('Ready')
+
+        self.setGeometry(300, 300, 250, 150)
+        self.setWindowTitle('Status bar window')
         self.setWindowIcon(QIcon('web.png'))
 
         self.show()
