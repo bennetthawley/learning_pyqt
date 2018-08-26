@@ -1,6 +1,5 @@
 import sys
 
-from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
 
@@ -10,13 +9,27 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle('My Awesome App')
 
-        widget = QCheckBox()
-        widget.setCheckState(Qt.PartiallyChecked)
-        widget.stateChanged.connect(self.show_state)
-
+        widget = QLineEdit()
+        widget.setPlaceholderText('Enter your text')
+        widget.returnPressed.connect(self.return_pressed)
+        widget.selectionChanged.connect(self.selection_changed)
+        widget.textChanged.connect(self.text_changed)
+        widget.textEdited.connect(self.text_edited)
         self.setCentralWidget(widget)
 
-    def show_state(self, s):
+    def return_pressed(self):
+        print('Return Pressed')
+
+    def selection_changed(self):
+        print('Selection changed')
+        print(self.centralWidget().selectedText())
+
+    def text_changed(self, t):
+        print('Text changed....')
+        print(t)
+
+    def text_edited(self, s):
+        print('Text edited....')
         print(s)
 
 
