@@ -29,6 +29,8 @@ class MainWindow(QMainWindow):
         tabs.setTabPosition(QTabWidget.East)
         tabs.setMovable(True)
 
+        layout = QLayout.setS
+
         for n, color in enumerate(['red', 'green', 'blue', 'yellow']):
             tabs.addTab(Color(color), color)
 
